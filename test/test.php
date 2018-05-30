@@ -32,12 +32,16 @@ $stream_context_options = [
 ];
 
 $soap_options = [
+    'user_agent' => 'hslatman/everbinding-php-0.1.0',
     'cache_wsdl' => WSDL_CACHE_NONE,
     'proxy_port' => '8888',
     'proxy_host' => 'localhost',
     'stream_context' => stream_context_create($stream_context_options),
     'verifypeer' => false,
     'verifyhost' => false,
+    'trace' => true,
+    'location' => 'https://testapi.everbinding.nl/soap/v3/', // This is optional, because it can be retrieved from the WSDL
+    'uri' => 'https://testapi.everbinding.nl/soap/v3/service.wsdl' // This is optional, because it is set below
 ];
 
 
