@@ -5,7 +5,7 @@ use Phpro\SoapClient\CodeGenerator\Rules;
 use Phpro\SoapClient\CodeGenerator\Config\Config;
 
 return Config::create()
-    ->setWsdl('testapi.everbinding.nl.v3.wsdl.xml')
+    ->setWsdl('config/testapi.everbinding.nl.v3.wsdl.xml')
     ->setTypeDestination('client/Type')
     ->setTypeNamespace('Slatman\EVerbinding\Type')
     ->setClientDestination('client')

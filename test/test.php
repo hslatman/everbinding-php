@@ -49,7 +49,7 @@ $output = new ConsoleOutput();
 $logger = new Logger\ConsoleLogger($output);
 $dispatcher = new EventDispatcher();
 
-$wsdl = 'testapi.everbinding.nl.v3.wsdl.xml'; // This can also be an URL
+$wsdl = 'config/testapi.everbinding.nl.v3.wsdl.xml'; // This can also be an URL
 
 /** @var ClientFactory $clientFactory */
 $clientFactory = new ClientFactory(EVerbindingClient::class);
