@@ -1,14 +1,26 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class GetInboxDocumentStatus
+use Phpro\SoapClient\Type\RequestInterface;
+
+class GetInboxDocumentStatus implements RequestInterface
 {
 
     /**
      * @var string
      */
     private $ExternalId;
+
+    /**
+     * Constructor
+     *
+     * @var string $ExternalId
+     */
+    public function __construct($ExternalId)
+    {
+        $this->ExternalId = $ExternalId;
+    }
 
     /**
      * @return string

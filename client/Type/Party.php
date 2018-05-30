@@ -1,8 +1,10 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class Party
+use Phpro\SoapClient\Type\RequestInterface;
+
+class Party implements RequestInterface
 {
 
     /**
@@ -21,9 +23,25 @@ class Party
     private $ChamberNumber;
 
     /**
-     * @var \Slatman\Type\Address
+     * @var \Slatman\EVerbinding\Type\Address
      */
     private $Address;
+
+    /**
+     * Constructor
+     *
+     * @var string $ReferenceId
+     * @var string $Name
+     * @var string $ChamberNumber
+     * @var \Slatman\EVerbinding\Type\Address $Address
+     */
+    public function __construct($ReferenceId, $Name, $ChamberNumber, $Address)
+    {
+        $this->ReferenceId = $ReferenceId;
+        $this->Name = $Name;
+        $this->ChamberNumber = $ChamberNumber;
+        $this->Address = $Address;
+    }
 
     /**
      * @return string
@@ -86,7 +104,7 @@ class Party
     }
 
     /**
-     * @return \Slatman\Type\Address
+     * @return \Slatman\EVerbinding\Type\Address
      */
     public function getAddress()
     {
@@ -94,7 +112,7 @@ class Party
     }
 
     /**
-     * @param \Slatman\Type\Address $Address
+     * @param \Slatman\EVerbinding\Type\Address $Address
      * @return Party
      */
     public function withAddress($Address)

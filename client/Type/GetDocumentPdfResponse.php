@@ -1,17 +1,30 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class GetDocumentPdfResponse
+use Phpro\SoapClient\Type\RequestInterface;
+use Phpro\SoapClient\Type\ResultInterface;
+
+class GetDocumentPdfResponse implements RequestInterface, ResultInterface
 {
 
     /**
-     * @var \Slatman\Type\FileDocument
+     * @var \Slatman\EVerbinding\Type\FileDocument
      */
     private $File;
 
     /**
-     * @return \Slatman\Type\FileDocument
+     * Constructor
+     *
+     * @var \Slatman\EVerbinding\Type\FileDocument $File
+     */
+    public function __construct($File)
+    {
+        $this->File = $File;
+    }
+
+    /**
+     * @return \Slatman\EVerbinding\Type\FileDocument
      */
     public function getFile()
     {
@@ -19,7 +32,7 @@ class GetDocumentPdfResponse
     }
 
     /**
-     * @param \Slatman\Type\FileDocument $File
+     * @param \Slatman\EVerbinding\Type\FileDocument $File
      * @return GetDocumentPdfResponse
      */
     public function withFile($File)

@@ -1,14 +1,27 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class PagingResponse
+use Phpro\SoapClient\Type\RequestInterface;
+use Phpro\SoapClient\Type\ResultInterface;
+
+class PagingResponse implements RequestInterface, ResultInterface
 {
 
     /**
      * @var string
      */
     private $NextPage;
+
+    /**
+     * Constructor
+     *
+     * @var string $NextPage
+     */
+    public function __construct($NextPage)
+    {
+        $this->NextPage = $NextPage;
+    }
 
     /**
      * @return string

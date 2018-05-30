@@ -1,8 +1,10 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class Status
+use Phpro\SoapClient\Type\RequestInterface;
+
+class Status implements RequestInterface
 {
 
     /**
@@ -14,6 +16,18 @@ class Status
      * @var string
      */
     private $Code;
+
+    /**
+     * Constructor
+     *
+     * @var string $Name
+     * @var string $Code
+     */
+    public function __construct($Name, $Code)
+    {
+        $this->Name = $Name;
+        $this->Code = $Code;
+    }
 
     /**
      * @return string

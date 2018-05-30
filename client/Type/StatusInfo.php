@@ -1,8 +1,10 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class StatusInfo
+use Phpro\SoapClient\Type\RequestInterface;
+
+class StatusInfo implements RequestInterface
 {
 
     /**
@@ -29,6 +31,24 @@ class StatusInfo
      * @var \DateTime
      */
     private $ChangedOn;
+
+    /**
+     * Constructor
+     *
+     * @var string $UserId
+     * @var string $UserName
+     * @var string $AccountId
+     * @var string $AccountName
+     * @var \DateTime $ChangedOn
+     */
+    public function __construct($UserId, $UserName, $AccountId, $AccountName, $ChangedOn)
+    {
+        $this->UserId = $UserId;
+        $this->UserName = $UserName;
+        $this->AccountId = $AccountId;
+        $this->AccountName = $AccountName;
+        $this->ChangedOn = $ChangedOn;
+    }
 
     /**
      * @return string

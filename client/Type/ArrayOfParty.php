@@ -1,17 +1,29 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class ArrayOfParty
+use Phpro\SoapClient\Type\RequestInterface;
+
+class ArrayOfParty implements RequestInterface
 {
 
     /**
-     * @var \Slatman\Type\Party
+     * @var \Slatman\EVerbinding\Type\Party
      */
     private $Party;
 
     /**
-     * @return \Slatman\Type\Party
+     * Constructor
+     *
+     * @var \Slatman\EVerbinding\Type\Party $Party
+     */
+    public function __construct($Party)
+    {
+        $this->Party = $Party;
+    }
+
+    /**
+     * @return \Slatman\EVerbinding\Type\Party
      */
     public function getParty()
     {
@@ -19,7 +31,7 @@ class ArrayOfParty
     }
 
     /**
-     * @param \Slatman\Type\Party $Party
+     * @param \Slatman\EVerbinding\Type\Party $Party
      * @return ArrayOfParty
      */
     public function withParty($Party)

@@ -1,8 +1,10 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class FileDocument
+use Phpro\SoapClient\Type\RequestInterface;
+
+class FileDocument implements RequestInterface
 {
 
     /**
@@ -14,6 +16,18 @@ class FileDocument
      * @var string
      */
     private $Contents;
+
+    /**
+     * Constructor
+     *
+     * @var string $Name
+     * @var string $Contents
+     */
+    public function __construct($Name, $Contents)
+    {
+        $this->Name = $Name;
+        $this->Contents = $Contents;
+    }
 
     /**
      * @return string

@@ -1,8 +1,10 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class GetInboxDocuments
+use Phpro\SoapClient\Type\RequestInterface;
+
+class GetInboxDocuments implements RequestInterface
 {
 
     /**
@@ -16,14 +18,30 @@ class GetInboxDocuments
     private $EConnectPartyId;
 
     /**
-     * @var \Slatman\Type\Paging
+     * @var \Slatman\EVerbinding\Type\Paging
      */
     private $Paging;
 
     /**
-     * @var \Slatman\Type\DocumentSearch
+     * @var \Slatman\EVerbinding\Type\DocumentSearch
      */
     private $Search;
+
+    /**
+     * Constructor
+     *
+     * @var string $GroupId
+     * @var string $EConnectPartyId
+     * @var \Slatman\EVerbinding\Type\Paging $Paging
+     * @var \Slatman\EVerbinding\Type\DocumentSearch $Search
+     */
+    public function __construct($GroupId, $EConnectPartyId, $Paging, $Search)
+    {
+        $this->GroupId = $GroupId;
+        $this->EConnectPartyId = $EConnectPartyId;
+        $this->Paging = $Paging;
+        $this->Search = $Search;
+    }
 
     /**
      * @return string
@@ -66,7 +84,7 @@ class GetInboxDocuments
     }
 
     /**
-     * @return \Slatman\Type\Paging
+     * @return \Slatman\EVerbinding\Type\Paging
      */
     public function getPaging()
     {
@@ -74,7 +92,7 @@ class GetInboxDocuments
     }
 
     /**
-     * @param \Slatman\Type\Paging $Paging
+     * @param \Slatman\EVerbinding\Type\Paging $Paging
      * @return GetInboxDocuments
      */
     public function withPaging($Paging)
@@ -86,7 +104,7 @@ class GetInboxDocuments
     }
 
     /**
-     * @return \Slatman\Type\DocumentSearch
+     * @return \Slatman\EVerbinding\Type\DocumentSearch
      */
     public function getSearch()
     {
@@ -94,7 +112,7 @@ class GetInboxDocuments
     }
 
     /**
-     * @param \Slatman\Type\DocumentSearch $Search
+     * @param \Slatman\EVerbinding\Type\DocumentSearch $Search
      * @return GetInboxDocuments
      */
     public function withSearch($Search)

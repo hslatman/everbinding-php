@@ -1,8 +1,10 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class Template
+use Phpro\SoapClient\Type\RequestInterface;
+
+class Template implements RequestInterface
 {
 
     /**
@@ -24,6 +26,22 @@ class Template
      * @var string
      */
     private $MasterName;
+
+    /**
+     * Constructor
+     *
+     * @var string $Id
+     * @var string $Name
+     * @var string $MasterId
+     * @var string $MasterName
+     */
+    public function __construct($Id, $Name, $MasterId, $MasterName)
+    {
+        $this->Id = $Id;
+        $this->Name = $Name;
+        $this->MasterId = $MasterId;
+        $this->MasterName = $MasterName;
+    }
 
     /**
      * @return string

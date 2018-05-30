@@ -1,8 +1,10 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class DocumentSearch
+use Phpro\SoapClient\Type\RequestInterface;
+
+class DocumentSearch implements RequestInterface
 {
 
     /**
@@ -21,34 +23,60 @@ class DocumentSearch
     private $Subject;
 
     /**
-     * @var \Slatman\Type\TimeSpanFilter
+     * @var \Slatman\EVerbinding\Type\TimeSpanFilter
      */
     private $CreatedOn;
 
     /**
-     * @var \Slatman\Type\TimeSpanFilter
+     * @var \Slatman\EVerbinding\Type\TimeSpanFilter
      */
     private $ModifiedOn;
 
     /**
-     * @var \Slatman\Type\DocumentParty
+     * @var \Slatman\EVerbinding\Type\DocumentParty
      */
     private $Sender;
 
     /**
-     * @var \Slatman\Type\DocumentParty
+     * @var \Slatman\EVerbinding\Type\DocumentParty
      */
     private $Reciever;
 
     /**
-     * @var \Slatman\Type\Status
+     * @var \Slatman\EVerbinding\Type\Status
      */
     private $Status;
 
     /**
-     * @var \Slatman\Type\Template
+     * @var \Slatman\EVerbinding\Type\Template
      */
     private $Template;
+
+    /**
+     * Constructor
+     *
+     * @var string $ExternalId
+     * @var string $DocumentId
+     * @var string $Subject
+     * @var \Slatman\EVerbinding\Type\TimeSpanFilter $CreatedOn
+     * @var \Slatman\EVerbinding\Type\TimeSpanFilter $ModifiedOn
+     * @var \Slatman\EVerbinding\Type\DocumentParty $Sender
+     * @var \Slatman\EVerbinding\Type\DocumentParty $Reciever
+     * @var \Slatman\EVerbinding\Type\Status $Status
+     * @var \Slatman\EVerbinding\Type\Template $Template
+     */
+    public function __construct($ExternalId, $DocumentId, $Subject, $CreatedOn, $ModifiedOn, $Sender, $Reciever, $Status, $Template)
+    {
+        $this->ExternalId = $ExternalId;
+        $this->DocumentId = $DocumentId;
+        $this->Subject = $Subject;
+        $this->CreatedOn = $CreatedOn;
+        $this->ModifiedOn = $ModifiedOn;
+        $this->Sender = $Sender;
+        $this->Reciever = $Reciever;
+        $this->Status = $Status;
+        $this->Template = $Template;
+    }
 
     /**
      * @return string
@@ -111,7 +139,7 @@ class DocumentSearch
     }
 
     /**
-     * @return \Slatman\Type\TimeSpanFilter
+     * @return \Slatman\EVerbinding\Type\TimeSpanFilter
      */
     public function getCreatedOn()
     {
@@ -119,7 +147,7 @@ class DocumentSearch
     }
 
     /**
-     * @param \Slatman\Type\TimeSpanFilter $CreatedOn
+     * @param \Slatman\EVerbinding\Type\TimeSpanFilter $CreatedOn
      * @return DocumentSearch
      */
     public function withCreatedOn($CreatedOn)
@@ -131,7 +159,7 @@ class DocumentSearch
     }
 
     /**
-     * @return \Slatman\Type\TimeSpanFilter
+     * @return \Slatman\EVerbinding\Type\TimeSpanFilter
      */
     public function getModifiedOn()
     {
@@ -139,7 +167,7 @@ class DocumentSearch
     }
 
     /**
-     * @param \Slatman\Type\TimeSpanFilter $ModifiedOn
+     * @param \Slatman\EVerbinding\Type\TimeSpanFilter $ModifiedOn
      * @return DocumentSearch
      */
     public function withModifiedOn($ModifiedOn)
@@ -151,7 +179,7 @@ class DocumentSearch
     }
 
     /**
-     * @return \Slatman\Type\DocumentParty
+     * @return \Slatman\EVerbinding\Type\DocumentParty
      */
     public function getSender()
     {
@@ -159,7 +187,7 @@ class DocumentSearch
     }
 
     /**
-     * @param \Slatman\Type\DocumentParty $Sender
+     * @param \Slatman\EVerbinding\Type\DocumentParty $Sender
      * @return DocumentSearch
      */
     public function withSender($Sender)
@@ -171,7 +199,7 @@ class DocumentSearch
     }
 
     /**
-     * @return \Slatman\Type\DocumentParty
+     * @return \Slatman\EVerbinding\Type\DocumentParty
      */
     public function getReciever()
     {
@@ -179,7 +207,7 @@ class DocumentSearch
     }
 
     /**
-     * @param \Slatman\Type\DocumentParty $Reciever
+     * @param \Slatman\EVerbinding\Type\DocumentParty $Reciever
      * @return DocumentSearch
      */
     public function withReciever($Reciever)
@@ -191,7 +219,7 @@ class DocumentSearch
     }
 
     /**
-     * @return \Slatman\Type\Status
+     * @return \Slatman\EVerbinding\Type\Status
      */
     public function getStatus()
     {
@@ -199,7 +227,7 @@ class DocumentSearch
     }
 
     /**
-     * @param \Slatman\Type\Status $Status
+     * @param \Slatman\EVerbinding\Type\Status $Status
      * @return DocumentSearch
      */
     public function withStatus($Status)
@@ -211,7 +239,7 @@ class DocumentSearch
     }
 
     /**
-     * @return \Slatman\Type\Template
+     * @return \Slatman\EVerbinding\Type\Template
      */
     public function getTemplate()
     {
@@ -219,7 +247,7 @@ class DocumentSearch
     }
 
     /**
-     * @param \Slatman\Type\Template $Template
+     * @param \Slatman\EVerbinding\Type\Template $Template
      * @return DocumentSearch
      */
     public function withTemplate($Template)

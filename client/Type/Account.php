@@ -1,8 +1,10 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class Account
+use Phpro\SoapClient\Type\RequestInterface;
+
+class Account implements RequestInterface
 {
 
     /**
@@ -14,6 +16,18 @@ class Account
      * @var string
      */
     private $Name;
+
+    /**
+     * Constructor
+     *
+     * @var string $Id
+     * @var string $Name
+     */
+    public function __construct($Id, $Name)
+    {
+        $this->Id = $Id;
+        $this->Name = $Name;
+    }
 
     /**
      * @return string

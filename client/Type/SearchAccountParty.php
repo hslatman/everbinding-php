@@ -1,9 +1,18 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class SearchAccountParty
+use Phpro\SoapClient\Type\RequestInterface;
+
+class SearchAccountParty implements RequestInterface
 {
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+    }
 
 
 }

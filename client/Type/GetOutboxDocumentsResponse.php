@@ -1,22 +1,37 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class GetOutboxDocumentsResponse
+use Phpro\SoapClient\Type\RequestInterface;
+use Phpro\SoapClient\Type\ResultInterface;
+
+class GetOutboxDocumentsResponse implements RequestInterface, ResultInterface
 {
 
     /**
-     * @var \Slatman\Type\ArrayOfDocument
+     * @var \Slatman\EVerbinding\Type\ArrayOfDocument
      */
     private $Results;
 
     /**
-     * @var \Slatman\Type\PagingResponse
+     * @var \Slatman\EVerbinding\Type\PagingResponse
      */
     private $PagingResponse;
 
     /**
-     * @return \Slatman\Type\ArrayOfDocument
+     * Constructor
+     *
+     * @var \Slatman\EVerbinding\Type\ArrayOfDocument $Results
+     * @var \Slatman\EVerbinding\Type\PagingResponse $PagingResponse
+     */
+    public function __construct($Results, $PagingResponse)
+    {
+        $this->Results = $Results;
+        $this->PagingResponse = $PagingResponse;
+    }
+
+    /**
+     * @return \Slatman\EVerbinding\Type\ArrayOfDocument
      */
     public function getResults()
     {
@@ -24,7 +39,7 @@ class GetOutboxDocumentsResponse
     }
 
     /**
-     * @param \Slatman\Type\ArrayOfDocument $Results
+     * @param \Slatman\EVerbinding\Type\ArrayOfDocument $Results
      * @return GetOutboxDocumentsResponse
      */
     public function withResults($Results)
@@ -36,7 +51,7 @@ class GetOutboxDocumentsResponse
     }
 
     /**
-     * @return \Slatman\Type\PagingResponse
+     * @return \Slatman\EVerbinding\Type\PagingResponse
      */
     public function getPagingResponse()
     {
@@ -44,7 +59,7 @@ class GetOutboxDocumentsResponse
     }
 
     /**
-     * @param \Slatman\Type\PagingResponse $PagingResponse
+     * @param \Slatman\EVerbinding\Type\PagingResponse $PagingResponse
      * @return GetOutboxDocumentsResponse
      */
     public function withPagingResponse($PagingResponse)

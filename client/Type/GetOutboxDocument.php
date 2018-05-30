@@ -1,14 +1,26 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class GetOutboxDocument
+use Phpro\SoapClient\Type\RequestInterface;
+
+class GetOutboxDocument implements RequestInterface
 {
 
     /**
      * @var string
      */
     private $ExternalId;
+
+    /**
+     * Constructor
+     *
+     * @var string $ExternalId
+     */
+    public function __construct($ExternalId)
+    {
+        $this->ExternalId = $ExternalId;
+    }
 
     /**
      * @return string

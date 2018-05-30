@@ -1,17 +1,29 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class ArrayOfPartyAccountDetails
+use Phpro\SoapClient\Type\RequestInterface;
+
+class ArrayOfPartyAccountDetails implements RequestInterface
 {
 
     /**
-     * @var \Slatman\Type\PartyAccountDetails
+     * @var \Slatman\EVerbinding\Type\PartyAccountDetails
      */
     private $PartyAccountDetails;
 
     /**
-     * @return \Slatman\Type\PartyAccountDetails
+     * Constructor
+     *
+     * @var \Slatman\EVerbinding\Type\PartyAccountDetails $PartyAccountDetails
+     */
+    public function __construct($PartyAccountDetails)
+    {
+        $this->PartyAccountDetails = $PartyAccountDetails;
+    }
+
+    /**
+     * @return \Slatman\EVerbinding\Type\PartyAccountDetails
      */
     public function getPartyAccountDetails()
     {
@@ -19,7 +31,7 @@ class ArrayOfPartyAccountDetails
     }
 
     /**
-     * @param \Slatman\Type\PartyAccountDetails $PartyAccountDetails
+     * @param \Slatman\EVerbinding\Type\PartyAccountDetails $PartyAccountDetails
      * @return ArrayOfPartyAccountDetails
      */
     public function withPartyAccountDetails($PartyAccountDetails)

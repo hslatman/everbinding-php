@@ -1,17 +1,19 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class SendDocument
+use Phpro\SoapClient\Type\RequestInterface;
+
+class SendDocument implements RequestInterface
 {
 
     /**
-     * @var \Slatman\Type\SenderVia
+     * @var \Slatman\EVerbinding\Type\SenderVia
      */
     private $Via;
 
     /**
-     * @var \Slatman\Type\Recipient
+     * @var \Slatman\EVerbinding\Type\Recipient
      */
     private $To;
 
@@ -21,7 +23,7 @@ class SendDocument
     private $Subject;
 
     /**
-     * @var \Slatman\Type\Payload
+     * @var \Slatman\EVerbinding\Type\Payload
      */
     private $Payload;
 
@@ -31,7 +33,25 @@ class SendDocument
     private $TemplateId;
 
     /**
-     * @return \Slatman\Type\SenderVia
+     * Constructor
+     *
+     * @var \Slatman\EVerbinding\Type\SenderVia $Via
+     * @var \Slatman\EVerbinding\Type\Recipient $To
+     * @var string $Subject
+     * @var \Slatman\EVerbinding\Type\Payload $Payload
+     * @var string $TemplateId
+     */
+    public function __construct($Via, $To, $Subject, $Payload, $TemplateId)
+    {
+        $this->Via = $Via;
+        $this->To = $To;
+        $this->Subject = $Subject;
+        $this->Payload = $Payload;
+        $this->TemplateId = $TemplateId;
+    }
+
+    /**
+     * @return \Slatman\EVerbinding\Type\SenderVia
      */
     public function getVia()
     {
@@ -39,7 +59,7 @@ class SendDocument
     }
 
     /**
-     * @param \Slatman\Type\SenderVia $Via
+     * @param \Slatman\EVerbinding\Type\SenderVia $Via
      * @return SendDocument
      */
     public function withVia($Via)
@@ -51,7 +71,7 @@ class SendDocument
     }
 
     /**
-     * @return \Slatman\Type\Recipient
+     * @return \Slatman\EVerbinding\Type\Recipient
      */
     public function getTo()
     {
@@ -59,7 +79,7 @@ class SendDocument
     }
 
     /**
-     * @param \Slatman\Type\Recipient $To
+     * @param \Slatman\EVerbinding\Type\Recipient $To
      * @return SendDocument
      */
     public function withTo($To)
@@ -91,7 +111,7 @@ class SendDocument
     }
 
     /**
-     * @return \Slatman\Type\Payload
+     * @return \Slatman\EVerbinding\Type\Payload
      */
     public function getPayload()
     {
@@ -99,7 +119,7 @@ class SendDocument
     }
 
     /**
-     * @param \Slatman\Type\Payload $Payload
+     * @param \Slatman\EVerbinding\Type\Payload $Payload
      * @return SendDocument
      */
     public function withPayload($Payload)

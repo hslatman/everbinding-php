@@ -1,14 +1,27 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class SendDocumentResponse
+use Phpro\SoapClient\Type\RequestInterface;
+use Phpro\SoapClient\Type\ResultInterface;
+
+class SendDocumentResponse implements RequestInterface, ResultInterface
 {
 
     /**
      * @var string
      */
     private $ExternalId;
+
+    /**
+     * Constructor
+     *
+     * @var string $ExternalId
+     */
+    public function __construct($ExternalId)
+    {
+        $this->ExternalId = $ExternalId;
+    }
 
     /**
      * @return string

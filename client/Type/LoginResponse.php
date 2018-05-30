@@ -1,14 +1,27 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class LoginResponse
+use Phpro\SoapClient\Type\RequestInterface;
+use Phpro\SoapClient\Type\ResultInterface;
+
+class LoginResponse implements RequestInterface, ResultInterface
 {
 
     /**
      * @var string
      */
     private $SecurityToken;
+
+    /**
+     * Constructor
+     *
+     * @var string $SecurityToken
+     */
+    public function __construct($SecurityToken)
+    {
+        $this->SecurityToken = $SecurityToken;
+    }
 
     /**
      * @return string

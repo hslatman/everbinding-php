@@ -1,8 +1,10 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class GetDocuments
+use Phpro\SoapClient\Type\RequestInterface;
+
+class GetDocuments implements RequestInterface
 {
 
     /**
@@ -11,14 +13,28 @@ class GetDocuments
     private $GroupId;
 
     /**
-     * @var \Slatman\Type\Paging
+     * @var \Slatman\EVerbinding\Type\Paging
      */
     private $Paging;
 
     /**
-     * @var \Slatman\Type\DocumentSearch
+     * @var \Slatman\EVerbinding\Type\DocumentSearch
      */
     private $Search;
+
+    /**
+     * Constructor
+     *
+     * @var string $GroupId
+     * @var \Slatman\EVerbinding\Type\Paging $Paging
+     * @var \Slatman\EVerbinding\Type\DocumentSearch $Search
+     */
+    public function __construct($GroupId, $Paging, $Search)
+    {
+        $this->GroupId = $GroupId;
+        $this->Paging = $Paging;
+        $this->Search = $Search;
+    }
 
     /**
      * @return string
@@ -41,7 +57,7 @@ class GetDocuments
     }
 
     /**
-     * @return \Slatman\Type\Paging
+     * @return \Slatman\EVerbinding\Type\Paging
      */
     public function getPaging()
     {
@@ -49,7 +65,7 @@ class GetDocuments
     }
 
     /**
-     * @param \Slatman\Type\Paging $Paging
+     * @param \Slatman\EVerbinding\Type\Paging $Paging
      * @return GetDocuments
      */
     public function withPaging($Paging)
@@ -61,7 +77,7 @@ class GetDocuments
     }
 
     /**
-     * @return \Slatman\Type\DocumentSearch
+     * @return \Slatman\EVerbinding\Type\DocumentSearch
      */
     public function getSearch()
     {
@@ -69,7 +85,7 @@ class GetDocuments
     }
 
     /**
-     * @param \Slatman\Type\DocumentSearch $Search
+     * @param \Slatman\EVerbinding\Type\DocumentSearch $Search
      * @return GetDocuments
      */
     public function withSearch($Search)

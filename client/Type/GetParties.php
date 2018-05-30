@@ -1,22 +1,36 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class GetParties
+use Phpro\SoapClient\Type\RequestInterface;
+
+class GetParties implements RequestInterface
 {
 
     /**
-     * @var \Slatman\Type\SearchParty
+     * @var \Slatman\EVerbinding\Type\SearchParty
      */
     private $Search;
 
     /**
-     * @var \Slatman\Type\Paging
+     * @var \Slatman\EVerbinding\Type\Paging
      */
     private $Paging;
 
     /**
-     * @return \Slatman\Type\SearchParty
+     * Constructor
+     *
+     * @var \Slatman\EVerbinding\Type\SearchParty $Search
+     * @var \Slatman\EVerbinding\Type\Paging $Paging
+     */
+    public function __construct($Search, $Paging)
+    {
+        $this->Search = $Search;
+        $this->Paging = $Paging;
+    }
+
+    /**
+     * @return \Slatman\EVerbinding\Type\SearchParty
      */
     public function getSearch()
     {
@@ -24,7 +38,7 @@ class GetParties
     }
 
     /**
-     * @param \Slatman\Type\SearchParty $Search
+     * @param \Slatman\EVerbinding\Type\SearchParty $Search
      * @return GetParties
      */
     public function withSearch($Search)
@@ -36,7 +50,7 @@ class GetParties
     }
 
     /**
-     * @return \Slatman\Type\Paging
+     * @return \Slatman\EVerbinding\Type\Paging
      */
     public function getPaging()
     {
@@ -44,7 +58,7 @@ class GetParties
     }
 
     /**
-     * @param \Slatman\Type\Paging $Paging
+     * @param \Slatman\EVerbinding\Type\Paging $Paging
      * @return GetParties
      */
     public function withPaging($Paging)

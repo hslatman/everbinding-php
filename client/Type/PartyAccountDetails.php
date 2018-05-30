@@ -1,8 +1,10 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class PartyAccountDetails
+use Phpro\SoapClient\Type\RequestInterface;
+
+class PartyAccountDetails implements RequestInterface
 {
 
     /**
@@ -11,7 +13,7 @@ class PartyAccountDetails
     private $Description;
 
     /**
-     * @var \Slatman\Type\Account
+     * @var \Slatman\EVerbinding\Type\Account
      */
     private $Account;
 
@@ -24,6 +26,22 @@ class PartyAccountDetails
      * @var bool
      */
     private $IsVerified;
+
+    /**
+     * Constructor
+     *
+     * @var string $Description
+     * @var \Slatman\EVerbinding\Type\Account $Account
+     * @var bool $IsRegisteredToPeppol
+     * @var bool $IsVerified
+     */
+    public function __construct($Description, $Account, $IsRegisteredToPeppol, $IsVerified)
+    {
+        $this->Description = $Description;
+        $this->Account = $Account;
+        $this->IsRegisteredToPeppol = $IsRegisteredToPeppol;
+        $this->IsVerified = $IsVerified;
+    }
 
     /**
      * @return string
@@ -46,7 +64,7 @@ class PartyAccountDetails
     }
 
     /**
-     * @return \Slatman\Type\Account
+     * @return \Slatman\EVerbinding\Type\Account
      */
     public function getAccount()
     {
@@ -54,7 +72,7 @@ class PartyAccountDetails
     }
 
     /**
-     * @param \Slatman\Type\Account $Account
+     * @param \Slatman\EVerbinding\Type\Account $Account
      * @return PartyAccountDetails
      */
     public function withAccount($Account)

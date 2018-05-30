@@ -1,8 +1,10 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class Document
+use Phpro\SoapClient\Type\RequestInterface;
+
+class Document implements RequestInterface
 {
 
     /**
@@ -31,29 +33,57 @@ class Document
     private $ModifiedOn;
 
     /**
-     * @var \Slatman\Type\DocumentParty
+     * @var \Slatman\EVerbinding\Type\DocumentParty
      */
     private $Sender;
 
     /**
-     * @var \Slatman\Type\DocumentParty
+     * @var \Slatman\EVerbinding\Type\DocumentParty
      */
     private $Reciever;
 
     /**
-     * @var \Slatman\Type\Status
+     * @var \Slatman\EVerbinding\Type\Status
      */
     private $Status;
 
     /**
-     * @var \Slatman\Type\Template
+     * @var \Slatman\EVerbinding\Type\Template
      */
     private $Template;
 
     /**
-     * @var \Slatman\Type\Transaction
+     * @var \Slatman\EVerbinding\Type\Transaction
      */
     private $Transaction;
+
+    /**
+     * Constructor
+     *
+     * @var string $ExternalId
+     * @var string $DocumentId
+     * @var string $Subject
+     * @var \DateTime $CreatedOn
+     * @var \DateTime $ModifiedOn
+     * @var \Slatman\EVerbinding\Type\DocumentParty $Sender
+     * @var \Slatman\EVerbinding\Type\DocumentParty $Reciever
+     * @var \Slatman\EVerbinding\Type\Status $Status
+     * @var \Slatman\EVerbinding\Type\Template $Template
+     * @var \Slatman\EVerbinding\Type\Transaction $Transaction
+     */
+    public function __construct($ExternalId, $DocumentId, $Subject, $CreatedOn, $ModifiedOn, $Sender, $Reciever, $Status, $Template, $Transaction)
+    {
+        $this->ExternalId = $ExternalId;
+        $this->DocumentId = $DocumentId;
+        $this->Subject = $Subject;
+        $this->CreatedOn = $CreatedOn;
+        $this->ModifiedOn = $ModifiedOn;
+        $this->Sender = $Sender;
+        $this->Reciever = $Reciever;
+        $this->Status = $Status;
+        $this->Template = $Template;
+        $this->Transaction = $Transaction;
+    }
 
     /**
      * @return string
@@ -156,7 +186,7 @@ class Document
     }
 
     /**
-     * @return \Slatman\Type\DocumentParty
+     * @return \Slatman\EVerbinding\Type\DocumentParty
      */
     public function getSender()
     {
@@ -164,7 +194,7 @@ class Document
     }
 
     /**
-     * @param \Slatman\Type\DocumentParty $Sender
+     * @param \Slatman\EVerbinding\Type\DocumentParty $Sender
      * @return Document
      */
     public function withSender($Sender)
@@ -176,7 +206,7 @@ class Document
     }
 
     /**
-     * @return \Slatman\Type\DocumentParty
+     * @return \Slatman\EVerbinding\Type\DocumentParty
      */
     public function getReciever()
     {
@@ -184,7 +214,7 @@ class Document
     }
 
     /**
-     * @param \Slatman\Type\DocumentParty $Reciever
+     * @param \Slatman\EVerbinding\Type\DocumentParty $Reciever
      * @return Document
      */
     public function withReciever($Reciever)
@@ -196,7 +226,7 @@ class Document
     }
 
     /**
-     * @return \Slatman\Type\Status
+     * @return \Slatman\EVerbinding\Type\Status
      */
     public function getStatus()
     {
@@ -204,7 +234,7 @@ class Document
     }
 
     /**
-     * @param \Slatman\Type\Status $Status
+     * @param \Slatman\EVerbinding\Type\Status $Status
      * @return Document
      */
     public function withStatus($Status)
@@ -216,7 +246,7 @@ class Document
     }
 
     /**
-     * @return \Slatman\Type\Template
+     * @return \Slatman\EVerbinding\Type\Template
      */
     public function getTemplate()
     {
@@ -224,7 +254,7 @@ class Document
     }
 
     /**
-     * @param \Slatman\Type\Template $Template
+     * @param \Slatman\EVerbinding\Type\Template $Template
      * @return Document
      */
     public function withTemplate($Template)
@@ -236,7 +266,7 @@ class Document
     }
 
     /**
-     * @return \Slatman\Type\Transaction
+     * @return \Slatman\EVerbinding\Type\Transaction
      */
     public function getTransaction()
     {
@@ -244,7 +274,7 @@ class Document
     }
 
     /**
-     * @param \Slatman\Type\Transaction $Transaction
+     * @param \Slatman\EVerbinding\Type\Transaction $Transaction
      * @return Document
      */
     public function withTransaction($Transaction)

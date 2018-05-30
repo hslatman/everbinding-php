@@ -1,8 +1,10 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class Transaction
+use Phpro\SoapClient\Type\RequestInterface;
+
+class Transaction implements RequestInterface
 {
 
     /**
@@ -16,7 +18,7 @@ class Transaction
     private $MessageId;
 
     /**
-     * @var \Slatman\Type\DeliveryMethod
+     * @var \Slatman\EVerbinding\Type\DeliveryMethod
      */
     private $DeliveryMethod;
 
@@ -29,6 +31,24 @@ class Transaction
      * @var string
      */
     private $ReceiverReferenceId;
+
+    /**
+     * Constructor
+     *
+     * @var string $Endpoint
+     * @var string $MessageId
+     * @var \Slatman\EVerbinding\Type\DeliveryMethod $DeliveryMethod
+     * @var string $SenderReferenceId
+     * @var string $ReceiverReferenceId
+     */
+    public function __construct($Endpoint, $MessageId, $DeliveryMethod, $SenderReferenceId, $ReceiverReferenceId)
+    {
+        $this->Endpoint = $Endpoint;
+        $this->MessageId = $MessageId;
+        $this->DeliveryMethod = $DeliveryMethod;
+        $this->SenderReferenceId = $SenderReferenceId;
+        $this->ReceiverReferenceId = $ReceiverReferenceId;
+    }
 
     /**
      * @return string
@@ -71,7 +91,7 @@ class Transaction
     }
 
     /**
-     * @return \Slatman\Type\DeliveryMethod
+     * @return \Slatman\EVerbinding\Type\DeliveryMethod
      */
     public function getDeliveryMethod()
     {
@@ -79,7 +99,7 @@ class Transaction
     }
 
     /**
-     * @param \Slatman\Type\DeliveryMethod $DeliveryMethod
+     * @param \Slatman\EVerbinding\Type\DeliveryMethod $DeliveryMethod
      * @return Transaction
      */
     public function withDeliveryMethod($DeliveryMethod)

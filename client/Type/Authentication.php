@@ -1,14 +1,26 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class Authentication
+use Phpro\SoapClient\Type\RequestInterface;
+
+class Authentication implements RequestInterface
 {
 
     /**
      * @var string
      */
     private $SecurityToken;
+
+    /**
+     * Constructor
+     *
+     * @var string $SecurityToken
+     */
+    public function __construct($SecurityToken)
+    {
+        $this->SecurityToken = $SecurityToken;
+    }
 
     /**
      * @return string

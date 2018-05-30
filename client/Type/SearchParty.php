@@ -1,8 +1,10 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class SearchParty
+use Phpro\SoapClient\Type\RequestInterface;
+
+class SearchParty implements RequestInterface
 {
 
     /**
@@ -29,6 +31,24 @@ class SearchParty
      * @var string
      */
     private $CountryCode;
+
+    /**
+     * Constructor
+     *
+     * @var string $ReferenceId
+     * @var string $Name
+     * @var string $ChamberNumber
+     * @var string $Residence
+     * @var string $CountryCode
+     */
+    public function __construct($ReferenceId, $Name, $ChamberNumber, $Residence, $CountryCode)
+    {
+        $this->ReferenceId = $ReferenceId;
+        $this->Name = $Name;
+        $this->ChamberNumber = $ChamberNumber;
+        $this->Residence = $Residence;
+        $this->CountryCode = $CountryCode;
+    }
 
     /**
      * @return string

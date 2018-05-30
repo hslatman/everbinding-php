@@ -1,14 +1,26 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class GetParty
+use Phpro\SoapClient\Type\RequestInterface;
+
+class GetParty implements RequestInterface
 {
 
     /**
      * @var string
      */
     private $ReferenceId;
+
+    /**
+     * Constructor
+     *
+     * @var string $ReferenceId
+     */
+    public function __construct($ReferenceId)
+    {
+        $this->ReferenceId = $ReferenceId;
+    }
 
     /**
      * @return string

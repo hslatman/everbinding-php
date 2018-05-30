@@ -1,22 +1,37 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class GetDocumentResponse
+use Phpro\SoapClient\Type\RequestInterface;
+use Phpro\SoapClient\Type\ResultInterface;
+
+class GetDocumentResponse implements RequestInterface, ResultInterface
 {
 
     /**
-     * @var \Slatman\Type\DocumentDetails
+     * @var \Slatman\EVerbinding\Type\DocumentDetails
      */
     private $Details;
 
     /**
-     * @var \Slatman\Type\ArrayOfStatus
+     * @var \Slatman\EVerbinding\Type\ArrayOfStatus
      */
     private $Statuses;
 
     /**
-     * @return \Slatman\Type\DocumentDetails
+     * Constructor
+     *
+     * @var \Slatman\EVerbinding\Type\DocumentDetails $Details
+     * @var \Slatman\EVerbinding\Type\ArrayOfStatus $Statuses
+     */
+    public function __construct($Details, $Statuses)
+    {
+        $this->Details = $Details;
+        $this->Statuses = $Statuses;
+    }
+
+    /**
+     * @return \Slatman\EVerbinding\Type\DocumentDetails
      */
     public function getDetails()
     {
@@ -24,7 +39,7 @@ class GetDocumentResponse
     }
 
     /**
-     * @param \Slatman\Type\DocumentDetails $Details
+     * @param \Slatman\EVerbinding\Type\DocumentDetails $Details
      * @return GetDocumentResponse
      */
     public function withDetails($Details)
@@ -36,7 +51,7 @@ class GetDocumentResponse
     }
 
     /**
-     * @return \Slatman\Type\ArrayOfStatus
+     * @return \Slatman\EVerbinding\Type\ArrayOfStatus
      */
     public function getStatuses()
     {
@@ -44,7 +59,7 @@ class GetDocumentResponse
     }
 
     /**
-     * @param \Slatman\Type\ArrayOfStatus $Statuses
+     * @param \Slatman\EVerbinding\Type\ArrayOfStatus $Statuses
      * @return GetDocumentResponse
      */
     public function withStatuses($Statuses)

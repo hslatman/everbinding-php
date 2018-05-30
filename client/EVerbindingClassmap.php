@@ -1,12 +1,12 @@
 <?php
 
-namespace Slatman;
+namespace Slatman\EVerbinding;
 
-use Slatman\Type;
+use Slatman\EVerbinding\Type;
 use Phpro\SoapClient\Soap\ClassMap\ClassMapCollection;
 use Phpro\SoapClient\Soap\ClassMap\ClassMap;
 
-class eVerbindingClassmap
+class EVerbindingClassmap
 {
 
     public static function getCollection() : \Phpro\SoapClient\Soap\ClassMap\ClassMapCollection

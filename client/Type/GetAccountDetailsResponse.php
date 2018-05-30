@@ -1,8 +1,11 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class GetAccountDetailsResponse
+use Phpro\SoapClient\Type\RequestInterface;
+use Phpro\SoapClient\Type\ResultInterface;
+
+class GetAccountDetailsResponse implements RequestInterface, ResultInterface
 {
 
     /**
@@ -34,6 +37,26 @@ class GetAccountDetailsResponse
      * @var bool
      */
     private $CanSendAppIntegrationRequests;
+
+    /**
+     * Constructor
+     *
+     * @var string $Description
+     * @var string $EmailAddress
+     * @var string $FaxNumber
+     * @var string $PhoneNumber
+     * @var string $Website
+     * @var bool $CanSendAppIntegrationRequests
+     */
+    public function __construct($Description, $EmailAddress, $FaxNumber, $PhoneNumber, $Website, $CanSendAppIntegrationRequests)
+    {
+        $this->Description = $Description;
+        $this->EmailAddress = $EmailAddress;
+        $this->FaxNumber = $FaxNumber;
+        $this->PhoneNumber = $PhoneNumber;
+        $this->Website = $Website;
+        $this->CanSendAppIntegrationRequests = $CanSendAppIntegrationRequests;
+    }
 
     /**
      * @return string

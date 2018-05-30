@@ -1,8 +1,10 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class TimeSpanFilter
+use Phpro\SoapClient\Type\RequestInterface;
+
+class TimeSpanFilter implements RequestInterface
 {
 
     /**
@@ -14,6 +16,18 @@ class TimeSpanFilter
      * @var \DateTime
      */
     private $From;
+
+    /**
+     * Constructor
+     *
+     * @var \DateTime $To
+     * @var \DateTime $From
+     */
+    public function __construct($To, $From)
+    {
+        $this->To = $To;
+        $this->From = $From;
+    }
 
     /**
      * @return \DateTime

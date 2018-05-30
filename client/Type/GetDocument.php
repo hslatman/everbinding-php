@@ -1,14 +1,26 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class GetDocument
+use Phpro\SoapClient\Type\RequestInterface;
+
+class GetDocument implements RequestInterface
 {
 
     /**
      * @var string
      */
     private $DocumentId;
+
+    /**
+     * Constructor
+     *
+     * @var string $DocumentId
+     */
+    public function __construct($DocumentId)
+    {
+        $this->DocumentId = $DocumentId;
+    }
 
     /**
      * @return string

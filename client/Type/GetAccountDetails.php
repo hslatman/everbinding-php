@@ -1,9 +1,18 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class GetAccountDetails
+use Phpro\SoapClient\Type\RequestInterface;
+
+class GetAccountDetails implements RequestInterface
 {
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+    }
 
 
 }

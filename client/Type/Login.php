@@ -1,8 +1,10 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class Login
+use Phpro\SoapClient\Type\RequestInterface;
+
+class Login implements RequestInterface
 {
 
     /**
@@ -14,6 +16,18 @@ class Login
      * @var string
      */
     private $ConsumerSecret;
+
+    /**
+     * Constructor
+     *
+     * @var string $ConsumerKey
+     * @var string $ConsumerSecret
+     */
+    public function __construct($ConsumerKey, $ConsumerSecret)
+    {
+        $this->ConsumerKey = $ConsumerKey;
+        $this->ConsumerSecret = $ConsumerSecret;
+    }
 
     /**
      * @return string

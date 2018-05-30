@@ -1,8 +1,10 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class Address
+use Phpro\SoapClient\Type\RequestInterface;
+
+class Address implements RequestInterface
 {
 
     /**
@@ -39,6 +41,28 @@ class Address
      * @var string
      */
     private $CountryCode;
+
+    /**
+     * Constructor
+     *
+     * @var string $EstablishmentNumber
+     * @var string $StreetName
+     * @var string $HouseNumber
+     * @var string $HouseNumberAddition
+     * @var string $PostalCode
+     * @var string $Residence
+     * @var string $CountryCode
+     */
+    public function __construct($EstablishmentNumber, $StreetName, $HouseNumber, $HouseNumberAddition, $PostalCode, $Residence, $CountryCode)
+    {
+        $this->EstablishmentNumber = $EstablishmentNumber;
+        $this->StreetName = $StreetName;
+        $this->HouseNumber = $HouseNumber;
+        $this->HouseNumberAddition = $HouseNumberAddition;
+        $this->PostalCode = $PostalCode;
+        $this->Residence = $Residence;
+        $this->CountryCode = $CountryCode;
+    }
 
     /**
      * @return string

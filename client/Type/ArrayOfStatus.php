@@ -1,17 +1,29 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class ArrayOfStatus
+use Phpro\SoapClient\Type\RequestInterface;
+
+class ArrayOfStatus implements RequestInterface
 {
 
     /**
-     * @var \Slatman\Type\Status
+     * @var \Slatman\EVerbinding\Type\Status
      */
     private $Status;
 
     /**
-     * @return \Slatman\Type\Status
+     * Constructor
+     *
+     * @var \Slatman\EVerbinding\Type\Status $Status
+     */
+    public function __construct($Status)
+    {
+        $this->Status = $Status;
+    }
+
+    /**
+     * @return \Slatman\EVerbinding\Type\Status
      */
     public function getStatus()
     {
@@ -19,7 +31,7 @@ class ArrayOfStatus
     }
 
     /**
-     * @param \Slatman\Type\Status $Status
+     * @param \Slatman\EVerbinding\Type\Status $Status
      * @return ArrayOfStatus
      */
     public function withStatus($Status)

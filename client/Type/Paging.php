@@ -1,8 +1,10 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class Paging
+use Phpro\SoapClient\Type\RequestInterface;
+
+class Paging implements RequestInterface
 {
 
     /**
@@ -14,6 +16,18 @@ class Paging
      * @var string
      */
     private $StartPage;
+
+    /**
+     * Constructor
+     *
+     * @var int $Limit
+     * @var string $StartPage
+     */
+    public function __construct($Limit, $StartPage)
+    {
+        $this->Limit = $Limit;
+        $this->StartPage = $StartPage;
+    }
 
     /**
      * @return int

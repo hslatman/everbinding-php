@@ -1,22 +1,37 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class GetPartiesResponse
+use Phpro\SoapClient\Type\RequestInterface;
+use Phpro\SoapClient\Type\ResultInterface;
+
+class GetPartiesResponse implements RequestInterface, ResultInterface
 {
 
     /**
-     * @var \Slatman\Type\ArrayOfParty
+     * @var \Slatman\EVerbinding\Type\ArrayOfParty
      */
     private $Results;
 
     /**
-     * @var \Slatman\Type\PagingResponse
+     * @var \Slatman\EVerbinding\Type\PagingResponse
      */
     private $PagingResponse;
 
     /**
-     * @return \Slatman\Type\ArrayOfParty
+     * Constructor
+     *
+     * @var \Slatman\EVerbinding\Type\ArrayOfParty $Results
+     * @var \Slatman\EVerbinding\Type\PagingResponse $PagingResponse
+     */
+    public function __construct($Results, $PagingResponse)
+    {
+        $this->Results = $Results;
+        $this->PagingResponse = $PagingResponse;
+    }
+
+    /**
+     * @return \Slatman\EVerbinding\Type\ArrayOfParty
      */
     public function getResults()
     {
@@ -24,7 +39,7 @@ class GetPartiesResponse
     }
 
     /**
-     * @param \Slatman\Type\ArrayOfParty $Results
+     * @param \Slatman\EVerbinding\Type\ArrayOfParty $Results
      * @return GetPartiesResponse
      */
     public function withResults($Results)
@@ -36,7 +51,7 @@ class GetPartiesResponse
     }
 
     /**
-     * @return \Slatman\Type\PagingResponse
+     * @return \Slatman\EVerbinding\Type\PagingResponse
      */
     public function getPagingResponse()
     {
@@ -44,7 +59,7 @@ class GetPartiesResponse
     }
 
     /**
-     * @param \Slatman\Type\PagingResponse $PagingResponse
+     * @param \Slatman\EVerbinding\Type\PagingResponse $PagingResponse
      * @return GetPartiesResponse
      */
     public function withPagingResponse($PagingResponse)

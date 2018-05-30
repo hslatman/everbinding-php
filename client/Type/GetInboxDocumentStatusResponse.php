@@ -1,17 +1,30 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class GetInboxDocumentStatusResponse
+use Phpro\SoapClient\Type\RequestInterface;
+use Phpro\SoapClient\Type\ResultInterface;
+
+class GetInboxDocumentStatusResponse implements RequestInterface, ResultInterface
 {
 
     /**
-     * @var \Slatman\Type\StatusDetails
+     * @var \Slatman\EVerbinding\Type\StatusDetails
      */
     private $Details;
 
     /**
-     * @return \Slatman\Type\StatusDetails
+     * Constructor
+     *
+     * @var \Slatman\EVerbinding\Type\StatusDetails $Details
+     */
+    public function __construct($Details)
+    {
+        $this->Details = $Details;
+    }
+
+    /**
+     * @return \Slatman\EVerbinding\Type\StatusDetails
      */
     public function getDetails()
     {
@@ -19,7 +32,7 @@ class GetInboxDocumentStatusResponse
     }
 
     /**
-     * @param \Slatman\Type\StatusDetails $Details
+     * @param \Slatman\EVerbinding\Type\StatusDetails $Details
      * @return GetInboxDocumentStatusResponse
      */
     public function withDetails($Details)

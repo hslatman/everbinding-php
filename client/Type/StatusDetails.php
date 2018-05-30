@@ -1,17 +1,29 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class StatusDetails
+use Phpro\SoapClient\Type\RequestInterface;
+
+class StatusDetails implements RequestInterface
 {
 
     /**
-     * @var \Slatman\Type\StatusInfo
+     * @var \Slatman\EVerbinding\Type\StatusInfo
      */
     private $Info;
 
     /**
-     * @return \Slatman\Type\StatusInfo
+     * Constructor
+     *
+     * @var \Slatman\EVerbinding\Type\StatusInfo $Info
+     */
+    public function __construct($Info)
+    {
+        $this->Info = $Info;
+    }
+
+    /**
+     * @return \Slatman\EVerbinding\Type\StatusInfo
      */
     public function getInfo()
     {
@@ -19,7 +31,7 @@ class StatusDetails
     }
 
     /**
-     * @param \Slatman\Type\StatusInfo $Info
+     * @param \Slatman\EVerbinding\Type\StatusInfo $Info
      * @return StatusDetails
      */
     public function withInfo($Info)

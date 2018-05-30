@@ -8,6 +8,11 @@
             "email": "hermanslatman@hotmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Slatman\\EVerbinding\\": "client/"
+        }
+    },
     "require": {
         "phpro/soap-client": "^0.7.2"
     },

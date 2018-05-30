@@ -1,14 +1,26 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class PartyDetails
+use Phpro\SoapClient\Type\RequestInterface;
+
+class PartyDetails implements RequestInterface
 {
 
     /**
      * @var string
      */
     private $EConnectPartyId;
+
+    /**
+     * Constructor
+     *
+     * @var string $EConnectPartyId
+     */
+    public function __construct($EConnectPartyId)
+    {
+        $this->EConnectPartyId = $EConnectPartyId;
+    }
 
     /**
      * @return string

@@ -1,8 +1,10 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class Recipient
+use Phpro\SoapClient\Type\RequestInterface;
+
+class Recipient implements RequestInterface
 {
 
     /**
@@ -14,6 +16,18 @@ class Recipient
      * @var string
      */
     private $EmailAddress;
+
+    /**
+     * Constructor
+     *
+     * @var string $ReferenceId
+     * @var string $EmailAddress
+     */
+    public function __construct($ReferenceId, $EmailAddress)
+    {
+        $this->ReferenceId = $ReferenceId;
+        $this->EmailAddress = $EmailAddress;
+    }
 
     /**
      * @return string

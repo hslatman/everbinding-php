@@ -1,17 +1,29 @@
 <?php
 
-namespace Slatman\Type;
+namespace Slatman\EVerbinding\Type;
 
-class Payload
+use Phpro\SoapClient\Type\RequestInterface;
+
+class Payload implements RequestInterface
 {
 
     /**
-     * @var \Slatman\Type\<anyXML>
+     * @var \Slatman\EVerbinding\Type\<anyXML>
      */
     private $any;
 
     /**
-     * @return \Slatman\Type\<anyXML>
+     * Constructor
+     *
+     * @var \Slatman\EVerbinding\Type\<anyXML> $any
+     */
+    public function __construct($any)
+    {
+        $this->any = $any;
+    }
+
+    /**
+     * @return \Slatman\EVerbinding\Type\<anyXML>
      */
     public function getAny()
     {
@@ -19,7 +31,7 @@ class Payload
     }
 
     /**
-     * @param \Slatman\Type\<anyXML> $any
+     * @param \Slatman\EVerbinding\Type\<anyXML> $any
      * @return Payload
      */
     public function withAny($any)
