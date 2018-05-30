@@ -1,0 +1,878 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://api.everbinding.nl/v3/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://api.everbinding.nl/v3/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve and send UBL documents from eConnect (eVerbinding) for your companies. Enrich company information and access your account details. More information can be found on https://development.everbinding.nl/.</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://api.everbinding.nl/v3/">
+      <s:element name="Login" nillable="true" type="tns:Login" />
+      <s:complexType name="Login">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ConsumerKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConsumerSecret" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="LoginResponse" nillable="true" type="tns:LoginResponse" />
+      <s:complexType name="LoginResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SecurityToken" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetInboxDocuments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GroupId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EConnectPartyId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Paging" type="tns:Paging" />
+            <s:element minOccurs="0" maxOccurs="1" name="Search" type="tns:DocumentSearch" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Paging">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Limit" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="StartPage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DocumentSearch">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ExternalId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreatedOn" type="tns:TimeSpanFilter" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModifiedOn" type="tns:TimeSpanFilter" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sender" type="tns:DocumentParty" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reciever" type="tns:DocumentParty" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="Template" type="tns:Template" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TimeSpanFilter">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="To" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="From" nillable="true" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DocumentParty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="EConnectPartyId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Status">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Template">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MasterId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MasterName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetInboxDocumentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Results" type="tns:ArrayOfDocument" />
+            <s:element minOccurs="0" maxOccurs="1" name="PagingResponse" type="tns:PagingResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDocument">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Document" nillable="true" type="tns:Document" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Document">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ExternalId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedOn" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ModifiedOn" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sender" type="tns:DocumentParty" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reciever" type="tns:DocumentParty" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="Template" type="tns:Template" />
+          <s:element minOccurs="0" maxOccurs="1" name="Transaction" type="tns:Transaction" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Transaction">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Endpoint" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MessageId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DeliveryMethod" type="tns:DeliveryMethod" />
+          <s:element minOccurs="0" maxOccurs="1" name="SenderReferenceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReceiverReferenceId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DeliveryMethod">
+        <s:restriction base="s:string">
+          <s:enumeration value="ToInbox" />
+          <s:enumeration value="ToPeppol" />
+          <s:enumeration value="ToEmail" />
+          <s:enumeration value="OutboxOnly" />
+          <s:enumeration value="None" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="PagingResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="NextPage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Authentication">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SecurityToken" type="s:string" />
+          </s:sequence>
+          <s:anyAttribute />
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInboxDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExternalId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInboxDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Details" type="tns:DocumentDetails" />
+            <s:element minOccurs="0" maxOccurs="1" name="Statuses" type="tns:ArrayOfStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DocumentDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ExternalId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedOn" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ModifiedOn" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sender" type="tns:DocumentParty" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reciever" type="tns:DocumentParty" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="tns:StatusDetails" />
+          <s:element minOccurs="0" maxOccurs="1" name="Template" type="tns:Template" />
+          <s:element minOccurs="0" maxOccurs="1" name="Transaction" type="tns:Transaction" />
+          <s:element minOccurs="0" maxOccurs="1" name="Payload">
+            <s:complexType>
+              <s:sequence>
+                <s:any processContents="lax" />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StatusDetails">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Status">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Info" type="tns:StatusInfo" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="StatusInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChangedOn" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Status" nillable="true" type="tns:Status" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetInboxDocumentStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExternalId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StatusCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetInboxDocumentStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExternalId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInboxDocumentStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExternalId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInboxDocumentStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Details" type="tns:StatusDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOutboxDocuments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GroupId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EConnectPartyId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Paging" type="tns:Paging" />
+            <s:element minOccurs="0" maxOccurs="1" name="Search" type="tns:DocumentSearch" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOutboxDocumentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Results" type="tns:ArrayOfDocument" />
+            <s:element minOccurs="0" maxOccurs="1" name="PagingResponse" type="tns:PagingResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOutboxDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExternalId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOutboxDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Details" type="tns:DocumentDetails" />
+            <s:element minOccurs="0" maxOccurs="1" name="Statuses" type="tns:ArrayOfStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOutboxDocumentStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExternalId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOutboxDocumentStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Details" type="tns:StatusDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocuments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GroupId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Paging" type="tns:Paging" />
+            <s:element minOccurs="0" maxOccurs="1" name="Search" type="tns:DocumentSearch" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Results" type="tns:ArrayOfDocument" />
+            <s:element minOccurs="0" maxOccurs="1" name="PagingResponse" type="tns:PagingResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Details" type="tns:DocumentDetails" />
+            <s:element minOccurs="0" maxOccurs="1" name="Statuses" type="tns:ArrayOfStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Via" type="tns:SenderVia" />
+            <s:element minOccurs="0" maxOccurs="1" name="To" type="tns:Recipient" />
+            <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Payload">
+              <s:complexType>
+                <s:sequence>
+                  <s:any processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="TemplateId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SenderVia">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenceId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Recipient">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SendDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExternalId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentPdf">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExternalId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentPdfResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="File" type="tns:FileDocument" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="FileDocument">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Contents" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetParties">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Search" type="tns:SearchParty" />
+            <s:element minOccurs="0" maxOccurs="1" name="Paging" type="tns:Paging" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SearchParty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ChamberNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Residence" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CountryCode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPartiesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Results" type="tns:ArrayOfParty" />
+            <s:element minOccurs="0" maxOccurs="1" name="PagingResponse" type="tns:PagingResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfParty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Party" nillable="true" type="tns:Party" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Party">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ChamberNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="tns:Address" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Address">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="EstablishmentNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StreetName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HouseNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HouseNumberAddition" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Residence" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CountryCode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetParty">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReferenceId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPartyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Details" type="tns:PartyDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PartyDetails">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Party">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="EConnectPartyId" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetAccountDetails">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAccountDetailsResponse">
+        <s:complexType>
+          <s:complexContent mixed="false">
+            <s:extension base="tns:Account">
+              <s:sequence>
+                <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+                <s:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="s:string" />
+                <s:element minOccurs="0" maxOccurs="1" name="FaxNumber" type="s:string" />
+                <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s:string" />
+                <s:element minOccurs="0" maxOccurs="1" name="Website" type="s:string" />
+                <s:element minOccurs="1" maxOccurs="1" name="CanSendAppIntegrationRequests" type="s:boolean" />
+              </s:sequence>
+            </s:extension>
+          </s:complexContent>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Account">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAccountParties">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Search" type="tns:SearchAccountParty" />
+            <s:element minOccurs="0" maxOccurs="1" name="Paging" type="tns:Paging" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SearchAccountParty" />
+      <s:element name="GetAccountPartiesReponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Results" type="tns:ArrayOfPartyAccountDetails" />
+            <s:element minOccurs="0" maxOccurs="1" name="PagingResponse" type="tns:PagingResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPartyAccountDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PartyAccountDetails" nillable="true" type="tns:PartyAccountDetails" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PartyAccountDetails">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:PartyDetails">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Account" type="tns:Account" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsRegisteredToPeppol" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsVerified" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="Login" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="LoginResult" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInboxDocumentsSoapIn">
+    <wsdl:part name="GetInboxDocuments" element="tns:GetInboxDocuments" />
+  </wsdl:message>
+  <wsdl:message name="GetInboxDocumentsSoapOut">
+    <wsdl:part name="GetInboxDocumentsResult" element="tns:GetInboxDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInboxDocumentsAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="GetInboxDocumentSoapIn">
+    <wsdl:part name="GetInboxDocument" element="tns:GetInboxDocument" />
+  </wsdl:message>
+  <wsdl:message name="GetInboxDocumentSoapOut">
+    <wsdl:part name="GetInboxDocumentResult" element="tns:GetInboxDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInboxDocumentAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="SetInboxDocumentStatusSoapIn">
+    <wsdl:part name="SetInboxDocumentStatus" element="tns:SetInboxDocumentStatus" />
+  </wsdl:message>
+  <wsdl:message name="SetInboxDocumentStatusSoapOut">
+    <wsdl:part name="SetInboxDocumentStatusResult" element="tns:SetInboxDocumentStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetInboxDocumentStatusAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="GetInboxDocumentStatusSoapIn">
+    <wsdl:part name="GetInboxDocumentStatus" element="tns:GetInboxDocumentStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetInboxDocumentStatusSoapOut">
+    <wsdl:part name="GetInboxDocumentStatusResult" element="tns:GetInboxDocumentStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInboxDocumentStatusAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="GetOutboxDocumentsSoapIn">
+    <wsdl:part name="GetOutboxDocuments" element="tns:GetOutboxDocuments" />
+  </wsdl:message>
+  <wsdl:message name="GetOutboxDocumentsSoapOut">
+    <wsdl:part name="GetOutboxDocumentsResult" element="tns:GetOutboxDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOutboxDocumentsAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="GetOutboxDocumentSoapIn">
+    <wsdl:part name="GetOutboxDocument" element="tns:GetOutboxDocument" />
+  </wsdl:message>
+  <wsdl:message name="GetOutboxDocumentSoapOut">
+    <wsdl:part name="GetOutboxDocumentResult" element="tns:GetOutboxDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOutboxDocumentAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="GetOutboxDocumentStatusSoapIn">
+    <wsdl:part name="GetOutboxDocumentStatus" element="tns:GetOutboxDocumentStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetOutboxDocumentStatusSoapOut">
+    <wsdl:part name="GetOutboxDocumentStatusResult" element="tns:GetOutboxDocumentStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOutboxDocumentStatusAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentsSoapIn">
+    <wsdl:part name="GetDocuments" element="tns:GetDocuments" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentsSoapOut">
+    <wsdl:part name="GetDocumentsResult" element="tns:GetDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentsAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentSoapIn">
+    <wsdl:part name="GetDocument" element="tns:GetDocument" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentSoapOut">
+    <wsdl:part name="GetDocumentResult" element="tns:GetDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="SendDocumentSoapIn">
+    <wsdl:part name="SendDocument" element="tns:SendDocument" />
+  </wsdl:message>
+  <wsdl:message name="SendDocumentSoapOut">
+    <wsdl:part name="SendDocumentResult" element="tns:SendDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendDocumentAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentPdfSoapIn">
+    <wsdl:part name="GetDocumentPdf" element="tns:GetDocumentPdf" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentPdfSoapOut">
+    <wsdl:part name="GetDocumentPdfResult" element="tns:GetDocumentPdfResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentPdfAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="GetPartiesSoapIn">
+    <wsdl:part name="GetParties" element="tns:GetParties" />
+  </wsdl:message>
+  <wsdl:message name="GetPartiesSoapOut">
+    <wsdl:part name="GetPartiesResult" element="tns:GetPartiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPartiesAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="GetPartySoapIn">
+    <wsdl:part name="GetParty" element="tns:GetParty" />
+  </wsdl:message>
+  <wsdl:message name="GetPartySoapOut">
+    <wsdl:part name="GetPartyResult" element="tns:GetPartyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPartyAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="GetAccountDetailsSoapIn">
+    <wsdl:part name="GetAccountDetails" element="tns:GetAccountDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetAccountDetailsSoapOut">
+    <wsdl:part name="GetAccountDetailsResult" element="tns:GetAccountDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAccountDetailsAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="GetAccountPartiesSoapIn">
+    <wsdl:part name="GetAccountParties" element="tns:GetAccountParties" />
+  </wsdl:message>
+  <wsdl:message name="GetAccountPartiesSoapOut">
+    <wsdl:part name="GetAccountPartiesResult" element="tns:GetAccountPartiesReponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAccountPartiesAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:portType name="EConnectServiceSoap">
+    <wsdl:operation name="Login">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Request a security token, that can be used in the authentication header.</wsdl:documentation>
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInboxDocuments">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve inbox document in the requested context.</wsdl:documentation>
+      <wsdl:input message="tns:GetInboxDocumentsSoapIn" />
+      <wsdl:output message="tns:GetInboxDocumentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInboxDocument">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve inbox document details and download the UBL.</wsdl:documentation>
+      <wsdl:input message="tns:GetInboxDocumentSoapIn" />
+      <wsdl:output message="tns:GetInboxDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetInboxDocumentStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update the status of the document</wsdl:documentation>
+      <wsdl:input message="tns:SetInboxDocumentStatusSoapIn" />
+      <wsdl:output message="tns:SetInboxDocumentStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInboxDocumentStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get current status of the document</wsdl:documentation>
+      <wsdl:input message="tns:GetInboxDocumentStatusSoapIn" />
+      <wsdl:output message="tns:GetInboxDocumentStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOutboxDocuments">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve outbox document in the requested context.</wsdl:documentation>
+      <wsdl:input message="tns:GetOutboxDocumentsSoapIn" />
+      <wsdl:output message="tns:GetOutboxDocumentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOutboxDocument">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve outbox document details and download the UBL.</wsdl:documentation>
+      <wsdl:input message="tns:GetOutboxDocumentSoapIn" />
+      <wsdl:output message="tns:GetOutboxDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOutboxDocumentStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get current status of the document</wsdl:documentation>
+      <wsdl:input message="tns:GetOutboxDocumentStatusSoapIn" />
+      <wsdl:output message="tns:GetOutboxDocumentStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocuments">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve document in the requested context.</wsdl:documentation>
+      <wsdl:input message="tns:GetDocumentsSoapIn" />
+      <wsdl:output message="tns:GetDocumentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocument">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve document details and download the payload.</wsdl:documentation>
+      <wsdl:input message="tns:GetDocumentSoapIn" />
+      <wsdl:output message="tns:GetDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendDocument">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send an Xml document to another party</wsdl:documentation>
+      <wsdl:input message="tns:SendDocumentSoapIn" />
+      <wsdl:output message="tns:SendDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentPdf">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Download PDF version of the document. If no PDF is found, we will generate one for you.</wsdl:documentation>
+      <wsdl:input message="tns:GetDocumentPdfSoapIn" />
+      <wsdl:output message="tns:GetDocumentPdfSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetParties">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Search through all companies.</wsdl:documentation>
+      <wsdl:input message="tns:GetPartiesSoapIn" />
+      <wsdl:output message="tns:GetPartiesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetParty">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get detailed company information and retrieve eConnectPartyId.</wsdl:documentation>
+      <wsdl:input message="tns:GetPartySoapIn" />
+      <wsdl:output message="tns:GetPartySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountDetails">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get account details with contact information.</wsdl:documentation>
+      <wsdl:input message="tns:GetAccountDetailsSoapIn" />
+      <wsdl:output message="tns:GetAccountDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountParties">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get parties that are connected to the current account.</wsdl:documentation>
+      <wsdl:input message="tns:GetAccountPartiesSoapIn" />
+      <wsdl:output message="tns:GetAccountPartiesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EConnectServiceSoap" type="tns:EConnectServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://api.everbinding.nl/v3/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInboxDocuments">
+      <soap:operation soapAction="http://api.everbinding.nl/v3/GetInboxDocuments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetInboxDocumentsAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInboxDocument">
+      <soap:operation soapAction="http://api.everbinding.nl/v3/GetInboxDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetInboxDocumentAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetInboxDocumentStatus">
+      <soap:operation soapAction="http://api.everbinding.nl/v3/SetInboxDocumentStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SetInboxDocumentStatusAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInboxDocumentStatus">
+      <soap:operation soapAction="http://api.everbinding.nl/v3/GetInboxDocumentStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetInboxDocumentStatusAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOutboxDocuments">
+      <soap:operation soapAction="http://api.everbinding.nl/v3/GetOutboxDocuments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetOutboxDocumentsAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOutboxDocument">
+      <soap:operation soapAction="http://api.everbinding.nl/v3/GetOutboxDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetOutboxDocumentAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOutboxDocumentStatus">
+      <soap:operation soapAction="http://api.everbinding.nl/v3/GetOutboxDocumentStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetOutboxDocumentStatusAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocuments">
+      <soap:operation soapAction="http://api.everbinding.nl/v3/GetDocuments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetDocumentsAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocument">
+      <soap:operation soapAction="http://api.everbinding.nl/v3/GetDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetDocumentAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendDocument">
+      <soap:operation soapAction="http://api.everbinding.nl/v3/SendDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SendDocumentAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentPdf">
+      <soap:operation soapAction="http://api.everbinding.nl/v3/GetDocumentPdf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetDocumentPdfAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetParties">
+      <soap:operation soapAction="http://api.everbinding.nl/v3/GetParties" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetPartiesAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetParty">
+      <soap:operation soapAction="http://api.everbinding.nl/v3/GetParty" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetPartyAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountDetails">
+      <soap:operation soapAction="http://api.everbinding.nl/v3/GetAccountDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAccountDetailsAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountParties">
+      <soap:operation soapAction="http://api.everbinding.nl/v3/GetAccountParties" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAccountPartiesAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EConnectService">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve and send UBL documents from eConnect (eVerbinding) for your companies. Enrich company information and access your account details. More information can be found on https://development.everbinding.nl/.</wsdl:documentation>
+    <wsdl:port name="EConnectServiceSoap" binding="tns:EConnectServiceSoap">
+      <soap:address location="https://testapi.everbinding.nl/soap/v3/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

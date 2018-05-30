@@ -1,0 +1,17 @@
+{
+    "name": "hslatman/everbinding-php",
+    "description": "A PHP client for the eVerbinding API",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Herman Slatman",
+            "email": "hermanslatman@hotmail.com"
+        }
+    ],
+    "require": {
+        "phpro/soap-client": "^0.7.2"
+    },
+    "require-dev": {
+        "zendframework/zend-code": "^3.1.0"
+    }
+}
