@@ -14,6 +14,7 @@ return Config::create()
     ->setClassMapDestination('client')
     ->setClassMapName('EVerbindingClassmap')
     ->setClassMapNamespace('Slatman\EVerbinding')
+    ->addSoapOption('user_agent', 'hslatman/everbinding-php-0.1.0') // This does not seem to work (yet)
     ->addRule(new Rules\AssembleRule(new Assembler\GetterAssembler(new Assembler\GetterAssemblerOptions())))
     ->addRule(new Rules\AssembleRule(new Assembler\ImmutableSetterAssembler()))
     ->addRule(

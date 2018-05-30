@@ -32,7 +32,7 @@ $stream_context_options = [
 ];
 
 $soap_options = [
-    'user_agent' => 'hslatman/everbinding-php-0.1.0',
+    'user_agent', 'hslatman/everbinding-php-0.1.0', // config/soap-client.php value does not seem to be set in EVerbindingClientFactory
     'cache_wsdl' => WSDL_CACHE_NONE,
     'proxy_port' => '8888',
     'proxy_host' => 'localhost',
