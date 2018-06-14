@@ -49,6 +49,27 @@ echo $response->getSecurityToken();
 
 You can also check the [test.php](test/test.php) file for a complete example including support for debugging the requests and responses using a proxy.
 
+## Development
+
+This library was created using the [soap-client](https://github.com/phpro/soap-client) library.
+It can be used to generate clients for specific SOAP APIs based on a WSDL file or URL.
+The library provides a script that can generate classmaps, client factories and clients, all based on a WSDL and a configuration file.
+Below is a short example for soap-client usage within this project.
+
+```bash
+# generate a classmap
+$ ./vendor/bin/soap-client generate:classmap --config=config/soap-client.php -o
+
+# generate a client factory
+$ ./vendor/bin/soap-client generate:clientfactory --config=config/soap-client.php -o
+
+# generate a client
+$ ./vendor/bin/soap-client generate:client --config=config/soap-client.php -o
+```
+
+More documentation about using soap-client can be found in on the project [repository](https://github.com/phpro/soap-client).
+
+
 ## Notes
 
 On their developer website, eVerbinding mentions that the correct WSDL file to use will be provided on request.
